@@ -77,11 +77,11 @@ export default function Form({ service, value, setValue }) {
     <div>
       <h2 className="text-2xl font-bold text-md text-gray-800">{title}</h2>
       <p>{rateInfo[service]}</p>
-      <h3 className="font-bold">Details</h3>
+      {/* <h3 className="font-bold">Details</h3>
       <p>💸 With charge</p>
       <p>Without charge</p>
       <p>📱 Using App 1.75%</p>
-      <p>#️⃣ Using USSD (button phone) 1.85%</p>
+      <p>#️⃣ Using USSD (button phone) 1.85%</p> */}
       <form onSubmit={handleSubmit} className="text-center">
         <input
           className="border-b-2 p-1 w-6/12  text-2xl"
@@ -96,10 +96,17 @@ export default function Form({ service, value, setValue }) {
           autoComplete="off"
           autoFocus={true}
         />
-        <button className="h-4 w-4 bg-red-400">&times;</button>
+        {/* <button className="h-4 w-4 bg-red-400">&times;</button> */}
       </form>
-      <div className="shareBox">
-        {navigator.share && <button onClick={handleShare}>Share</button>}
+      <div className="shareBox text-center">
+        {navigator.share && (
+          <button
+            className="bg-gray-500 rounded-md text-white px-3 py-2 my-2 text-center"
+            onClick={handleShare}
+          >
+            Share
+          </button>
+        )}
       </div>
     </div>
   );
