@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Cashout Charge",
+  "name": "Cashout Charge for Bkash, Nagad, Rocket, Upay and other mobile financial services",
   "icons": [
     {
       "src": "favicon.ico",
