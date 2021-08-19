@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# New Project Template
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains a template that can be used to seed a repository for a
+new Google open source project.
 
-## Available Scripts
+See [go/releasing](http://go/releasing) (available externally at
+https://opensource.google/docs/releasing/) for more information about
+releasing a new Google open source project.
 
-In the project directory, you can run:
+This template uses the Apache license, as is Google's default.  See the
+documentation for instructions on using alternate license.
 
-### `yarn start`
+## How to use this template
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone it from GitHub.
+    * There is no reason to fork it.
+1. Create a new local repository and copy the files from this repo into it.
+1. Modify README.md and docs/contributing.md to represent your project, not the
+   template project.
+1. Develop your new project!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+``` shell
+git clone https://github.com/google/new-project
+mkdir my-new-thing
+cd my-new-thing
+git init
+cp -r ../new-project/* ../new-project/.github .
+git add *
+git commit -a -m 'Boilerplate for new Google open source project'
+```
 
-### `yarn test`
+## Source Code Headers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Every file containing source code must include copyright and license
+information. This includes any JS/CSS files that you might be serving out to
+browsers. (This is to help well-intentioned people avoid accidental copying that
+doesn't comply with the license.)
 
-### `yarn build`
+Apache header:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Copyright 2021 Tamal Anwar Chowdhury
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        https://www.apache.org/licenses/LICENSE-2.0
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
