@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import { calculateCharge } from "../calculateCharge";
 import { rateInfo } from "../rateInfo";
 import { makeCapitalCase } from "../makeCapitalCase";
@@ -10,6 +10,7 @@ export default function Form({ service, value, setValue }) {
   const [title, setTitle] = useState(defaultTitle);
   const inputValue = useRef();
   let history = useHistory();
+  let location = useLocation();
   let validValue = parseInt(slug);
 
   useLayoutEffect(() => {
@@ -47,8 +48,8 @@ export default function Form({ service, value, setValue }) {
   async function handleShare() {
     const shareData = {
       title,
-      text: "Learn web development on MDN!",
-      url: history.location,
+      text: title,
+      url: window.location.href,
     };
 
     await navigator.share(shareData);
@@ -76,7 +77,7 @@ export default function Form({ service, value, setValue }) {
         />
       </form>
       <div className="shareBox">
-        <button onClick={handleShare}>Share</button>
+        {navigator.share && <button onClick={handleShare}>Share</button>}
       </div>
     </div>
   );

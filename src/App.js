@@ -48,7 +48,7 @@ function App() {
             <div className="p-3 bg-white rounded-md shadow-md">
               <Switch>
                 <Route exact path="/">
-                  <Form service="bkash" />
+                  <Form service="bkash" value={value} setValue={setValue} />
                 </Route>
                 {providers.map((service) => (
                   <Route
