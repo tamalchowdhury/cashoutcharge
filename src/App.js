@@ -31,10 +31,13 @@ function App() {
   return (
     <div id="app" className="sm:w-6/12 h-screen mx-auto bg-blue-50">
       <Router>
+        <h1 className="text-center py-2">
+          <Link to="/">CashoutCharge.com</Link>
+        </h1>
         <nav className="grid grid-cols-4">
           {providers.map((service) => (
             <Link
-              className="text-center p-2 text-white uppercase bg-blue-400 no-underline hover:bg-blue-700"
+              className="text-center py-4 text-white uppercase bg-blue-400 no-underline hover:bg-blue-700"
               to={`/${service}`}
               title={service}
               key={`${service}-link`}
@@ -44,8 +47,8 @@ function App() {
           ))}
         </nav>
         <div className="">
-          <div className=" p-3">
-            <div className="p-3 bg-white rounded-md shadow-md">
+          <div className="">
+            <div className="p-3 bg-white  ">
               <Switch>
                 <Route exact path="/">
                   <Form service="bkash" value={value} setValue={setValue} />
