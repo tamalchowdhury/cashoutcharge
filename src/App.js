@@ -17,6 +17,10 @@ limitations under the License.
 import Form from "./component/Form";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useLayoutEffect, useState } from "react";
+import ReactGA from "react-ga";
+const trackingId = "G-BE6VYCPE7X";
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const providers = ["bkash", "rocket", "nagad", "upay"];
 
@@ -91,6 +95,17 @@ function App() {
                   />
                 ))}
               </Switch>
+              <div>
+                <p>
+                  <a
+                    href="https://github.com/tamalweb/cashoutcharge"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Source Code
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
