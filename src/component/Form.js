@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import { calculateCharge } from "../calculateCharge";
 import { rateInfo } from "../rateInfo";
@@ -47,8 +47,11 @@ export default function Form({ service, value, setValue }) {
       history.push(`/${service}/${value}`);
     }
     setTitle(newTitle);
-    document.title = title;
   }, [value]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   function handleSubmit(e) {
     e.preventDefault();
