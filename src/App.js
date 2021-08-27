@@ -18,7 +18,7 @@ import Form from "./component/Form";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useLayoutEffect, useState } from "react";
 import ReactGA from "react-ga";
-const trackingId = "G-BE6VYCPE7X";
+const trackingId = "UA-44799005-18";
 ReactGA.initialize(trackingId);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
