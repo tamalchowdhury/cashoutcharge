@@ -43,9 +43,6 @@ export default function Form({ service, value, setValue }) {
     } else {
       newTitle = defaultTitle;
     }
-    if (value) {
-      history.push(`/${service}/${value}`);
-    }
     setTitle(newTitle);
   }, [value]);
 
@@ -68,7 +65,7 @@ export default function Form({ service, value, setValue }) {
     const shareData = {
       title,
       text: title,
-      url: window.location.href,
+      url: window.location.href + "/" + value,
     };
 
     await navigator.share(shareData);
@@ -76,16 +73,42 @@ export default function Form({ service, value, setValue }) {
     // .catch((err) => alert(err));
   }
 
+  function calcFee(amount, percent) {
+    let fee = Math.ceil((amount * percent) / 100);
+    return fee;
+  }
+
+  const fee = calcFee(value, rateInfo[service].ussd);
+
   return (
     <div>
-      <h2 className="text-2xl font-bold text-md text-gray-800">{title}</h2>
-      <p>{rateInfo[service]}</p>
-      {/* <h3 className="font-bold">Details</h3>
-      <p>💸 With charge</p>
-      <p>Without charge</p>
-      <p>📱 Using App 1.75%</p>
-      <p>#️⃣ Using USSD (button phone) 1.85%</p> */}
-      <form onSubmit={handleSubmit} className="text-center">
+      <h2 className="text-2xl font-bold text-md text-gray-800 ">
+        {title}
+        {value && navigator.share && (
+          <button
+            className="text-sm bg-green-500 rounded-md text-white mx-2 px-2 text-center"
+            onClick={handleShare}
+          >
+            SHARE
+          </button>
+        )}
+      </h2>
+
+      {value && (
+        <>
+          <h3 className="font-bold">Details</h3>
+          <p>
+            ➕ With charge ({value} + {fee}) = {parseInt(value) + parseInt(fee)}
+          </p>
+          <p>
+            ➖ Without charge ({value} - {fee}) ={" "}
+            {parseInt(value) - parseInt(fee)}{" "}
+          </p>
+          <p>📱 Using App {rateInfo[service].app}%</p>
+          <p>#️⃣ Button Phone (ussd) {rateInfo[service].ussd}%</p>
+        </>
+      )}
+      <form onSubmit={handleSubmit} className="text-center my-5">
         <input
           className="border-b-2 p-1 w-6/12  text-2xl"
           type="number"
@@ -101,16 +124,6 @@ export default function Form({ service, value, setValue }) {
         />
         {/* <button className="h-4 w-4 bg-red-400">&times;</button> */}
       </form>
-      <div className="shareBox text-center">
-        {navigator.share && (
-          <button
-            className="bg-gray-500 rounded-md text-white px-3 py-2 my-2 text-center"
-            onClick={handleShare}
-          >
-            Share
-          </button>
-        )}
-      </div>
     </div>
   );
 }

@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   return (
-    <div id="app" className="sm:w-6/12 h-screen mx-auto bg-blue-50">
+    <div id="app" className="sm:w-6/12 h-screen mx-auto">
       <Router>
         <h1 className="text-center py-2">
           <Link to="/">CashoutCharge.com</Link>
@@ -95,8 +95,17 @@ function App() {
                   />
                 ))}
               </Switch>
-              <div>
+              <div className="text-center">
                 <p>
+                  By{" "}
+                  <a
+                    href="https://tamalweb.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Tamal Chowdhury
+                  </a>{" "}
+                  -{" "}
                   <a
                     href="https://github.com/tamalweb/cashoutcharge"
                     target="_blank"
