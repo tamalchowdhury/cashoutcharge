@@ -15,10 +15,12 @@ limitations under the License.
 */
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useLocation, useHistory, Link } from "react-router-dom";
 import { calculateCharge } from "../calculateCharge";
 import { rateInfo } from "../rateInfo";
 import { makeCapitalCase } from "../makeCapitalCase";
+
+const popularAmounts = [2000, 5000, 10000, 15000, 25000];
 
 export default function Form({ service, value, setValue }) {
   let { slug } = useParams();
@@ -94,6 +96,21 @@ export default function Form({ service, value, setValue }) {
         )}
       </h2>
 
+      {!value && (
+        <>
+          <h3 className="font-bold">Popular Amounts:</h3>
+          <div className="text-center">
+            {popularAmounts.map((amount) => (
+              <div
+                className="bg-yellow-400 inline-block p-2 m-4 rounded-md  text-xl hover:bg-yellow-600 cursor-pointer"
+                onClick={() => setValue(amount)}
+              >
+                {amount.toLocaleString("en-IN")}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
       {value && (
         <>
           <h3 className="font-bold">Details</h3>
