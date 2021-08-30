@@ -46,7 +46,9 @@ function App() {
     <div id="app" className="sm:w-6/12 h-screen mx-auto">
       <Router>
         <h1 className="text-center py-2">
-          <Link to="/">CashoutCharge.com</Link>
+          <Link to="/" onClick={() => setValue("")}>
+            CashoutCharge.com
+          </Link>
         </h1>
         <nav className="grid grid-cols-4">
           {providers.map((service) => (
