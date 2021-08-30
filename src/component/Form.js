@@ -139,7 +139,6 @@ export default function Form({ service, value, setValue }) {
             autoComplete="off"
             autoFocus={true}
           />
-          {/* <button className="h-4 w-4 bg-red-400">&times;</button> */}
         </form>
       </div>
     </HelmetProvider>
