@@ -15,12 +15,13 @@ limitations under the License.
 */
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { calculateCharge } from "../calculateCharge";
-import { rateInfo } from "../rateInfo";
-import { makeCapitalCase } from "../makeCapitalCase";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
-const popularAmounts = [2000, 5000, 10000, 15000, 25000];
+import {
+  calculateCharge,
+  makeCapitalCase,
+  rateInfo,
+  popularAmounts,
+} from "../helpers/";
 
 export default function Form({ service, value, setValue }) {
   const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`;

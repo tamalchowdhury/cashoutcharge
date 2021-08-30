@@ -14,15 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import Form from "./component/Form";
+import Form from "./Form";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useLayoutEffect, useState } from "react";
+import { providers } from "../helpers";
 import ReactGA from "react-ga";
 const trackingId = "UA-44799005-18";
 ReactGA.initialize(trackingId);
 ReactGA.pageview(window.location.pathname + window.location.search);
-
-const providers = ["bkash", "rocket", "nagad", "upay"];
 
 function App() {
   const [value, setValue] = useState();
