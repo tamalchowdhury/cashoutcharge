@@ -14,49 +14,49 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useLayoutEffect, useRef, useState } from "react"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 import {
   calculateCharge,
   makeCapitalCase,
   rateInfo,
   popularAmounts,
-} from "../helpers/";
+} from "../helpers/"
 
 export default function Form({ service, value, setValue }) {
-  const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`;
+  const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`
   const defaultDescription = `${makeCapitalCase(service)} cashout fee is ${
     rateInfo[service].app
-  }% from App, and ${rateInfo[service].ussd}% from ussd/button phone`;
-  const [title, setTitle] = useState(defaultTitle);
-  const [description, setDescription] = useState(defaultDescription);
-  const inputValue = useRef();
+  }% from App, and ${rateInfo[service].ussd}% from ussd/button phone`
+  const [title, setTitle] = useState(defaultTitle)
+  const [description, setDescription] = useState(defaultDescription)
+  const inputValue = useRef()
 
   useLayoutEffect(() => {
-    let newTitle = "";
+    let newTitle = ""
     if (value) {
-      let [app, ussd] = calculateCharge(service, value);
-      let fee = ussd;
-      let amount = parseInt(value);
+      let [app, ussd] = calculateCharge(service, value)
+      let fee = ussd
+      let amount = parseInt(value)
       newTitle = `${amount.toLocaleString("en-IN")} Tk ${makeCapitalCase(
         service
       )} Cashout Charge is ${fee} Tk (Total: ${parseInt(
         amount + fee
-      ).toLocaleString("en-IN")})`;
+      ).toLocaleString("en-IN")})`
     } else {
-      newTitle = defaultTitle;
+      newTitle = defaultTitle
     }
-    setTitle(newTitle);
-  }, [value]);
+    setTitle(newTitle)
+  }, [value])
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
   }
 
   function handleChange(e) {
-    let value = e.target.value;
+    let value = e.target.value
     if (value.length < 7) {
-      setValue(value);
+      setValue(value)
     }
   }
 
@@ -65,16 +65,16 @@ export default function Form({ service, value, setValue }) {
       title,
       text: title,
       url: window.location.href + "/" + value,
-    };
-    await navigator.share(shareData);
+    }
+    await navigator.share(shareData)
   }
 
   function calcFee(amount, percent) {
-    let fee = Math.ceil((amount * percent) / 100);
-    return fee;
+    let fee = Math.ceil((amount * percent) / 100)
+    return fee
   }
 
-  const fee = calcFee(value, rateInfo[service].ussd);
+  const fee = calcFee(value, rateInfo[service].ussd)
 
   return (
     <HelmetProvider>
@@ -135,7 +135,7 @@ export default function Form({ service, value, setValue }) {
             ref={inputValue}
             value={value}
             onChange={handleChange}
-            placeholder={value}
+            inputMode="numeric"
             aria-label="amount"
             autoComplete="off"
             autoFocus={true}
@@ -143,5 +143,5 @@ export default function Form({ service, value, setValue }) {
         </form>
       </div>
     </HelmetProvider>
-  );
+  )
 }

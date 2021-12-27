@@ -14,32 +14,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import Form from "./Form";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { useLayoutEffect, useState } from "react";
-import { providers } from "../helpers";
-import ReactGA from "react-ga";
-const trackingId = "UA-44799005-18";
-ReactGA.initialize(trackingId);
-ReactGA.pageview(window.location.pathname + window.location.search);
+import Form from "./Form"
+import "./scss/app.scss"
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+import { useLayoutEffect, useState } from "react"
+import { providers } from "../helpers"
+import ReactGA from "react-ga"
+import GitHubButton from "react-github-btn"
+const trackingId = "UA-44799005-18"
+ReactGA.initialize(trackingId)
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState()
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
-    let path = window.location.pathname;
-    let item = path.split("/");
-    let amount = item.pop();
+    let path = window.location.pathname
+    let item = path.split("/")
+    let amount = item.pop()
 
     if (!amount) {
-      amount = item.pop();
+      amount = item.pop()
     }
-    amount = parseInt(amount);
+    amount = parseInt(amount)
     if (amount) {
-      setValue(amount);
+      setValue(amount)
     }
-  }, []);
+  }, [])
 
   return (
     <div id="app" className="sm:w-6/12 h-screen mx-auto">
@@ -96,32 +98,26 @@ function App() {
                   <Form service="bkash" value={value} setValue={setValue} />
                 </Route>
               </Switch>
-              <div className="text-center">
-                <p>
-                  By{" "}
-                  <a
-                    href="https://tamalweb.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Tamal Chowdhury
-                  </a>{" "}
-                  -{" "}
-                  <a
-                    href="https://github.com/tamalweb/cashoutcharge"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Source Code
-                  </a>
-                </p>
-              </div>
+              <footer className="footer text-center">
+                <a href="https://tamalweb.com/" target="_blank" rel="author">
+                  Developed by Tamal Web
+                </a>{" "}
+                <GitHubButton
+                  href="https://github.com/tamalweb/cashoutcharge"
+                  data-color-scheme="no-preference: light; light: light; dark: dark;"
+                  data-icon="octicon-star"
+                  data-size="large"
+                  aria-label="Star tamalweb/cashoutcharge on GitHub"
+                >
+                  Star
+                </GitHubButton>
+              </footer>
             </div>
           </div>
         </div>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
