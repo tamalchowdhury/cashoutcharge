@@ -14,45 +14,46 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import Form from "./Form";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { useLayoutEffect, useState } from "react";
-import { providers } from "../helpers";
-import ReactGA from "react-ga";
-const trackingId = "UA-44799005-18";
-ReactGA.initialize(trackingId);
-ReactGA.pageview(window.location.pathname + window.location.search);
+import "./app.scss"
+import Form from "./Form"
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+import { useLayoutEffect, useState } from "react"
+import { providers } from "../helpers"
+import ReactGA from "react-ga"
+const trackingId = "UA-44799005-18"
+ReactGA.initialize(trackingId)
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState()
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
-    let path = window.location.pathname;
-    let item = path.split("/");
-    let amount = item.pop();
+    let path = window.location.pathname
+    let item = path.split("/")
+    let amount = item.pop()
 
     if (!amount) {
-      amount = item.pop();
+      amount = item.pop()
     }
-    amount = parseInt(amount);
+    amount = parseInt(amount)
     if (amount) {
-      setValue(amount);
+      setValue(amount)
     }
-  }, []);
+  }, [])
 
   return (
-    <div id="app" className="sm:w-6/12 h-screen mx-auto">
+    <div id="app" className="app">
       <Router>
-        <h1 className="text-center py-2">
+        <h1 className="">
           <Link to="/" onClick={() => setValue("")}>
             CashoutCharge.com
           </Link>
         </h1>
-        <nav className="grid grid-cols-4">
+        <nav className="menu">
           {providers.map((service) => (
             <Link
-              className="text-center py-4 text-white uppercase bg-blue-400 no-underline hover:bg-blue-700"
+              className=""
               to={`/${service}`}
               title={service}
               key={`${service}-link`}
@@ -63,7 +64,7 @@ function App() {
         </nav>
         <div className="">
           <div className="">
-            <div className="p-3 bg-white  ">
+            <div className="shell">
               <Switch>
                 {providers.map((service) => (
                   <Route
@@ -121,7 +122,7 @@ function App() {
         </div>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

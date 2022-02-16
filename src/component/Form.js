@@ -14,49 +14,51 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import "./form.scss"
+
+import { useLayoutEffect, useRef, useState } from "react"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 import {
   calculateCharge,
   makeCapitalCase,
   rateInfo,
   popularAmounts,
-} from "../helpers/";
+} from "../helpers/"
 
 export default function Form({ service, value, setValue }) {
-  const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`;
+  const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`
   const defaultDescription = `${makeCapitalCase(service)} cashout fee is ${
     rateInfo[service].app
-  }% from App, and ${rateInfo[service].ussd}% from ussd/button phone`;
-  const [title, setTitle] = useState(defaultTitle);
-  const [description, setDescription] = useState(defaultDescription);
-  const inputValue = useRef();
+  }% from App, and ${rateInfo[service].ussd}% from ussd/button phone`
+  const [title, setTitle] = useState(defaultTitle)
+  const [description, setDescription] = useState(defaultDescription)
+  const inputValue = useRef()
 
   useLayoutEffect(() => {
-    let newTitle = "";
+    let newTitle = ""
     if (value) {
-      let [app, ussd] = calculateCharge(service, value);
-      let fee = ussd;
-      let amount = parseInt(value);
+      let [app, ussd] = calculateCharge(service, value)
+      let fee = ussd
+      let amount = parseInt(value)
       newTitle = `${amount.toLocaleString("en-IN")} Tk ${makeCapitalCase(
         service
       )} Cashout Charge is ${fee} Tk (Total: ${parseInt(
         amount + fee
-      ).toLocaleString("en-IN")})`;
+      ).toLocaleString("en-IN")})`
     } else {
-      newTitle = defaultTitle;
+      newTitle = defaultTitle
     }
-    setTitle(newTitle);
-  }, [value]);
+    setTitle(newTitle)
+  }, [value])
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
   }
 
   function handleChange(e) {
-    let value = e.target.value;
+    let value = e.target.value
     if (value.length < 7) {
-      setValue(value);
+      setValue(value)
     }
   }
 
@@ -65,16 +67,16 @@ export default function Form({ service, value, setValue }) {
       title,
       text: title,
       url: window.location.href + "/" + value,
-    };
-    await navigator.share(shareData);
+    }
+    await navigator.share(shareData)
   }
 
   function calcFee(amount, percent) {
-    let fee = Math.ceil((amount * percent) / 100);
-    return fee;
+    let fee = Math.ceil((amount * percent) / 100)
+    return fee
   }
 
-  const fee = calcFee(value, rateInfo[service].ussd);
+  const fee = calcFee(value, rateInfo[service].ussd)
 
   return (
     <HelmetProvider>
@@ -82,7 +84,43 @@ export default function Form({ service, value, setValue }) {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
-      <div>
+      <div className="form">
+        <div className="form__title">
+          <h1>{makeCapitalCase(service)} Cashout Calculator</h1>
+        </div>
+        <div className="form__body">
+          <form onSubmit={handleSubmit} className="">
+            <input
+              className=""
+              type="text"
+              inputMode="numeric"
+              step={500}
+              name="amount"
+              ref={inputValue}
+              value={value}
+              onChange={handleChange}
+              placeholder={value}
+              aria-label="amount"
+              autoComplete="off"
+              autoFocus={true}
+            />
+          </form>
+        </div>
+        <div className="form__suggestion">
+          <strong>Popular Amounts:</strong>{" "}
+          {popularAmounts.map((amount) => (
+            <div
+              className="form__suggestion__item"
+              key={amount}
+              onClick={() => setValue(amount)}
+            >
+              <span className="form__suggestion__item__symbol__left">৳</span>
+              <span className="form__suggestion__item__symbol__right">৳</span>
+              {amount.toLocaleString("en-IN")}
+            </div>
+          ))}
+        </div>
+
         <h2 className="text-2xl font-bold text-md text-gray-800 ">
           {title}
           {value && navigator.share && (
@@ -98,50 +136,30 @@ export default function Form({ service, value, setValue }) {
         {!value && (
           <>
             <h3 className="font-bold">Popular Amounts:</h3>
-            <div className="text-center">
-              {popularAmounts.map((amount) => (
-                <div
-                  className="bg-yellow-400 inline-block p-2 m-4 rounded-md  text-xl hover:bg-yellow-600 cursor-pointer"
-                  key={amount}
-                  onClick={() => setValue(amount)}
-                >
-                  {amount.toLocaleString("en-IN")}
-                </div>
-              ))}
-            </div>
+            <div className="text-center"></div>
           </>
         )}
         {value && (
           <>
-            <h3 className="font-bold">Details</h3>
+            <h3 className="">Breakdown:</h3>
+            <ul>
+              <li>
+                Amount with charge ({value} + {fee}) ={" "}
+                {parseInt(value) + parseInt(fee)} Taka
+              </li>
+              <li>
+                Amount without charge ({value} - {fee}) ={" "}
+                {parseInt(value) - parseInt(fee)} Taka
+              </li>
+            </ul>
+
             <p>
-              ➕ With charge ({value} + {fee}) ={" "}
-              {parseInt(value) + parseInt(fee)}
+              {service} fee is {rateInfo[service].app}% with the app and{" "}
+              {rateInfo[service].ussd}% with button phone
             </p>
-            <p>
-              ➖ Without charge ({value} - {fee}) ={" "}
-              {parseInt(value) - parseInt(fee)}{" "}
-            </p>
-            <p>📱 Using App {rateInfo[service].app}%</p>
-            <p>#️⃣ Button Phone (ussd) {rateInfo[service].ussd}%</p>
           </>
         )}
-        <form onSubmit={handleSubmit} className="text-center my-5">
-          <input
-            className="border-b-2 p-1 w-6/12  text-2xl"
-            type="number"
-            step={500}
-            name="amount"
-            ref={inputValue}
-            value={value}
-            onChange={handleChange}
-            placeholder={value}
-            aria-label="amount"
-            autoComplete="off"
-            autoFocus={true}
-          />
-        </form>
       </div>
     </HelmetProvider>
-  );
+  )
 }

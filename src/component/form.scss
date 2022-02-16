@@ -1,0 +1,61 @@
+.form {
+  display: grid;
+  gap: 20px;
+  &__title {
+    & h1 {
+      font-size: 3rem;
+    }
+  }
+
+  &__body {
+    & input {
+      font-size: 3rem;
+      padding: 0.4rem 0.6rem;
+      width: 7ch;
+      background: none;
+      border-bottom: 3px solid;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__suggestion {
+    &__item {
+      background: #ffeb3b;
+      font-weight: bold;
+      color: #0d47a1;
+      cursor: pointer;
+      display: inline-block;
+      padding: 0.4rem 0.6rem;
+      margin-inline-end: 10px;
+      // border-radius: 2px;
+      box-shadow: 3px 3px 0 darkseagreen;
+      // font-style: italic;
+      position: relative;
+
+      &:hover {
+        transform: rotate(-10deg);
+        transition: ease-in-out 0.2s;
+      }
+
+      &__symbol__left,
+      &__symbol__right {
+        position: absolute;
+        color: #8aacc8;
+        font-size: 0.5rem;
+      }
+
+      &__symbol__left {
+        left: 2px;
+        top: 2px;
+      }
+
+      &__symbol__right {
+        right: 2px;
+        bottom: 2px;
+      }
+    }
+  }
+}
