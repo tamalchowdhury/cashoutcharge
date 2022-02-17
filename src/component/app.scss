@@ -7,44 +7,133 @@
 
 $theme-color: #c5e1a5;
 $body-color: #f8ffd7;
+$bkash-theme: #d62267;
+$bkash-theme-pink: #d62267;
+$bkash-bg-color: #ffcdd2;
+
+$nagad-bg-color: #ffcc80;
+$nagad-theme: #f24f41;
+$nagad-theme-red: #f24f41;
+$nagad-theme-orange: #f58220;
+
+$upay-bg-color: #ffd602;
+$upay-theme: #024697;
+$upay-theme-blue: #024697;
 
 $heading-font: "Archivo Narrow", sans-serif;
 $body-font: "Julius Sans One", sans-serif;
 $bangla-font: Niladri, sans-serif;
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
 body {
-  background: $body-color;
+  // background: $body-color;
   font-family: $body-font;
   line-height: 1.3;
   display: grid;
   justify-content: center;
 }
 
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+
+  & h1 {
+    margin: 0;
+  }
+
+  & select {
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: Arial, sans-serif;
+    height: 1.3rem;
+  }
 }
 
 .menu {
   display: flex;
+  font-family: $bangla-font;
 
   &__item {
     padding: 10px 15px;
-    background: $theme-color;
+    background: $nagad-bg-color;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     margin-right: 5px;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
   }
 }
 
+.menu.menu--bn {
+  font-size: 1.3rem;
+}
+
 .app {
-  width: 600px;
 }
 
 .shell {
+  width: 600px;
   background: $theme-color;
   border-radius: 0 7px 7px 7px;
   padding: 30px;
+}
+
+.app.bkash--theme {
+}
+
+.shell.bkash--theme,
+.menu__item.bkash--theme {
+  background: $bkash-bg-color;
+}
+
+.shell.nagad--theme {
+  background-color: $nagad-bg-color;
+}
+.shell.upay--theme {
+  background-color: $upay-bg-color;
+}
+
+.bkash--theme {
+  color: $bkash-theme;
+}
+
+.nagad--theme {
+  color: $nagad-theme;
+}
+
+.upay--theme {
+  color: $upay-theme;
+}
+
+.menu__item.bkash--theme {
+  color: $bkash-theme-pink;
+}
+.menu__item.nagad--theme {
+  color: $nagad-theme-red;
+}
+.menu__item.upay--theme {
+  background: $upay-bg-color;
+  color: $upay-theme-blue;
 }
 
 h1,
@@ -56,4 +145,10 @@ h3 {
 
 .en--font {
   font-weight: bold;
+}
+
+.footer {
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 10px 0;
 }

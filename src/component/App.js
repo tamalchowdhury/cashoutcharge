@@ -20,6 +20,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import { useLayoutEffect, useState } from "react"
 import { providers } from "../helpers"
 import ReactGA from "react-ga"
+import Bkash from "./Bkash/Bkash"
+import Nagad from "./Nagad/Nagad"
 const trackingId = "UA-44799005-18"
 ReactGA.initialize(trackingId)
 ReactGA.pageview(window.location.pathname + window.location.search)
@@ -27,6 +29,7 @@ ReactGA.pageview(window.location.pathname + window.location.search)
 function App() {
   const [value, setValue] = useState()
   const [lang, setLang] = useState("en")
+  const [theme, setTheme] = useState("bkash--theme")
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
@@ -57,7 +60,7 @@ function App() {
         <header className="header">
           <h1 className="">
             <Link to="/" onClick={() => setValue("")}>
-              CashoutCharge.com
+              {lang === "en" ? "CashoutCharge.com" : "ক্যাশআউট চার্জ.কম"}
             </Link>
           </h1>
           {/* language switcher */}
@@ -70,22 +73,44 @@ function App() {
             </option>
           </select>
         </header>
-        <nav className="menu">
-          {providers.map((service) => (
-            <Link
-              className="menu__item"
-              to={`/${service}`}
-              title={service}
-              key={`${service}-link`}
-            >
-              {service}
-            </Link>
-          ))}
+        <nav className={`menu ${lang === "en" ? "menu--en" : "menu--bn"}`}>
+          <Link
+            to="/bkash"
+            className="menu__item bkash--theme"
+            onClick={() => setTheme("bkash--theme")}
+          >
+            {lang === "en" ? "Bkash" : "বিকাশ"}
+          </Link>
+          <Link
+            to="/nagad"
+            className="menu__item nagad--theme"
+            onClick={() => setTheme("nagad--theme")}
+          >
+            {lang === "en" ? "Nagad" : "নগদ"}
+          </Link>
+          <Link to="/rocket" className="menu__item">
+            {lang === "en" ? "Rocket" : "রকেট"}
+          </Link>
+          <Link
+            to="/upay"
+            className="menu__item upay--theme"
+            onClick={() => setTheme("upay--theme")}
+          >
+            {lang === "en" ? "Upay" : "উপায়"}
+          </Link>
         </nav>
         <div className="">
           <div className="">
-            <div className="shell">
+            <div className={`shell ${theme}`}>
               <Switch>
+                <Route
+                  path="/bkash"
+                  component={() => <Bkash switchLang={switchLang} />}
+                />
+                <Route
+                  path="/nagad"
+                  component={() => <Nagad switchLang={switchLang} />}
+                />
                 {providers.map((service) => (
                   <Route
                     exact
@@ -127,27 +152,27 @@ function App() {
                   />
                 </Route>
               </Switch>
-              <div className="text-center">
-                <p>
-                  By{" "}
-                  <a
-                    href="https://tamalweb.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Tamal Chowdhury
-                  </a>{" "}
-                  -{" "}
-                  <a
-                    href="https://github.com/tamalweb/cashoutcharge"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Source Code
-                  </a>
-                </p>
-              </div>
             </div>
+            <footer className="footer">
+              <p>
+                By{" "}
+                <a
+                  href="https://tamalweb.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Tamal Chowdhury
+                </a>{" "}
+                -{" "}
+                <a
+                  href="https://github.com/tamalweb/cashoutcharge"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Source Code
+                </a>
+              </p>
+            </footer>
           </div>
         </div>
       </Router>
