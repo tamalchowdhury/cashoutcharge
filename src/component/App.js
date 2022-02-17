@@ -26,6 +26,7 @@ ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
   const [value, setValue] = useState()
+  const [lang, setLang] = useState("en")
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
@@ -42,18 +43,37 @@ function App() {
     }
   }, [])
 
+  function switchLang(englishText, banglaText) {
+    if (lang === "en") {
+      return <span className="en--font">{englishText}</span>
+    } else {
+      return <span className="bn--font">{banglaText}</span>
+    }
+  }
+
   return (
     <div id="app" className="app">
       <Router>
-        <h1 className="">
-          <Link to="/" onClick={() => setValue("")}>
-            CashoutCharge.com
-          </Link>
-        </h1>
+        <header className="header">
+          <h1 className="">
+            <Link to="/" onClick={() => setValue("")}>
+              CashoutCharge.com
+            </Link>
+          </h1>
+          {/* language switcher */}
+          <select onChange={(e) => setLang(e.target.value)}>
+            <option value="en" defaultChecked={lang === "en"}>
+              English
+            </option>
+            <option value="bn" defaultChecked={lang === "bn"}>
+              বাংলা
+            </option>
+          </select>
+        </header>
         <nav className="menu">
           {providers.map((service) => (
             <Link
-              className=""
+              className="menu__item"
               to={`/${service}`}
               title={service}
               key={`${service}-link`}
@@ -76,6 +96,8 @@ function App() {
                         service={service}
                         value={value}
                         setValue={setValue}
+                        switchLang={switchLang}
+                        lang={lang}
                       />
                     )}
                   />
@@ -89,12 +111,20 @@ function App() {
                         service={service}
                         value={value}
                         setValue={setValue}
+                        switchLang={switchLang}
+                        lang={lang}
                       />
                     )}
                   />
                 ))}
                 <Route exact path="/">
-                  <Form service="bkash" value={value} setValue={setValue} />
+                  <Form
+                    service="bkash"
+                    value={value}
+                    setValue={setValue}
+                    switchLang={switchLang}
+                    lang={lang}
+                  />
                 </Route>
               </Switch>
               <div className="text-center">

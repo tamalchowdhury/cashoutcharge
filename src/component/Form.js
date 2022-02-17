@@ -25,7 +25,7 @@ import {
   popularAmounts,
 } from "../helpers/"
 
-export default function Form({ service, value, setValue }) {
+export default function Form({ lang, service, value, setValue, switchLang }) {
   const defaultTitle = `${makeCapitalCase(service)} Cashout Charge Calculator`
   const defaultDescription = `${makeCapitalCase(service)} cashout fee is ${
     rateInfo[service].app
@@ -40,7 +40,16 @@ export default function Form({ service, value, setValue }) {
       let [app, ussd] = calculateCharge(service, value)
       let fee = ussd
       let amount = parseInt(value)
-      newTitle = `${amount.toLocaleString("en-IN")} Tk ${makeCapitalCase(
+      let bnTitle = switchLang(
+        `Cashout Charge is ${fee} Tk`,
+        "ক্যাশআউট চার্জ ৫ টাকা"
+      )
+
+      newTitle = `${
+        lang === "en"
+          ? amount.toLocaleString("en-IN")
+          : amount.toLocaleString("bn-IN")
+      } Tk ${makeCapitalCase(
         service
       )} Cashout Charge is ${fee} Tk (Total: ${parseInt(
         amount + fee
@@ -58,7 +67,11 @@ export default function Form({ service, value, setValue }) {
   function handleChange(e) {
     let value = e.target.value
     if (value.length < 7) {
-      setValue(value)
+      setValue(
+        lang === "en"
+          ? value.toLocaleString("en-IN")
+          : value.toLocaleString("bn-IN")
+      )
     }
   }
 
@@ -86,7 +99,7 @@ export default function Form({ service, value, setValue }) {
       </Helmet>
       <div className="form">
         <div className="form__title">
-          <h1>{makeCapitalCase(service)} Cashout Calculator</h1>
+          <h1>{switchLang("Cashout Calculator", "ক্যাশআউট ক্যালকুলেটর")}</h1>
         </div>
         <div className="form__body">
           <form onSubmit={handleSubmit} className="">
@@ -107,7 +120,9 @@ export default function Form({ service, value, setValue }) {
           </form>
         </div>
         <div className="form__suggestion">
-          <strong>Popular Amounts:</strong>{" "}
+          <strong>
+            {switchLang("Popular Amounts:", "অন্যান্য এমাউন্টঃ")}{" "}
+          </strong>{" "}
           {popularAmounts.map((amount) => (
             <div
               className="form__suggestion__item"
@@ -116,7 +131,9 @@ export default function Form({ service, value, setValue }) {
             >
               <span className="form__suggestion__item__symbol__left">৳</span>
               <span className="form__suggestion__item__symbol__right">৳</span>
-              {amount.toLocaleString("en-IN")}
+              {lang === "en"
+                ? amount.toLocaleString("en-IN")
+                : amount.toLocaleString("bn-IN")}
             </div>
           ))}
         </div>
@@ -133,15 +150,9 @@ export default function Form({ service, value, setValue }) {
           )}
         </h2>
 
-        {!value && (
-          <>
-            <h3 className="font-bold">Popular Amounts:</h3>
-            <div className="text-center"></div>
-          </>
-        )}
         {value && (
           <>
-            <h3 className="">Breakdown:</h3>
+            <h3 className="">{switchLang("Breakdown:", "বিস্তারিতঃ")}</h3>
             <ul>
               <li>
                 Amount with charge ({value} + {fee}) ={" "}
