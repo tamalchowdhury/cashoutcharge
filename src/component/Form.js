@@ -99,7 +99,12 @@ export default function Form({ lang, service, value, setValue, switchLang }) {
       </Helmet>
       <div className="form">
         <div className="form__title">
-          <h1>{switchLang("Cashout Calculator", "ক্যাশআউট ক্যালকুলেটর")}</h1>
+          <h1>
+            {switchLang(
+              "Bkash Cashout Calculator",
+              "বিকাশ ক্যাশআউট ক্যালকুলেটর"
+            )}
+          </h1>
         </div>
         <div className="form__body">
           <form onSubmit={handleSubmit} className="">
