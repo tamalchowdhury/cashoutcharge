@@ -28,7 +28,7 @@ ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
   const [value, setValue] = useState()
-  const [lang, setLang] = useState("en")
+  const [siteLang, setLang] = useState("en")
   const [theme, setTheme] = useState("bkash--theme")
 
   // Getting the amount from the url path
@@ -52,6 +52,31 @@ function App() {
     } else {
       return <span className="bn--font">{banglaText}</span>
     }
+  }
+
+  const lang = {
+    switch(englishText, banglaText) {
+      if (siteLang === "bn") {
+        return banglaText
+      } else {
+        return englishText
+      }
+    },
+    toMoney(amount) {
+      if (siteLang === "bn") {
+        return amount.toLocaleString("bn-IN")
+      } else {
+        return amount.toLocaleString("en-IN")
+      }
+    },
+    current: siteLang,
+  }
+
+  const money = {
+    setValue(value) {
+      setValue(value)
+    },
+    value: value,
   }
 
   return (
@@ -105,12 +130,11 @@ function App() {
               <Switch>
                 <Route
                   path="/bkash"
-                  component={() => <Bkash switchLang={switchLang} />}
+                  component={() => (
+                    <Bkash siteLang={siteLang} lang={lang} money={money} />
+                  )}
                 />
-                <Route
-                  path="/nagad"
-                  component={() => <Nagad switchLang={switchLang} />}
-                />
+                <Route path="/nagad" component={() => <Nagad lang={lang} />} />
                 {providers.map((service) => (
                   <Route
                     exact

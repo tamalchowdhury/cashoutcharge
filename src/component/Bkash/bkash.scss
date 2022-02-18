@@ -1,0 +1,10 @@
+.form {
+  &__body {
+    display: flex;
+    gap: 20px;
+  }
+
+  input {
+    font-family: Niladri, sans-serif;
+  }
+}
