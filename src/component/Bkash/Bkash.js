@@ -3,7 +3,7 @@ import { popularAmounts } from "../../helpers/"
 import "./bkash.scss"
 import { calculateCharge } from "../../helpers"
 
-export default function Bkash({ lang, siteLang, money }) {
+export default function Bkash({ text }) {
   const [value, setValue] = useState(0)
   const [localeValue, setLocaleValue] = useState()
 
@@ -21,10 +21,7 @@ export default function Bkash({ lang, siteLang, money }) {
       <div className="form">
         <div className="form__title">
           <h1>
-            {lang.switch(
-              "Bkash Cashout Calculator",
-              "বিকাশ ক্যাশআউট ক্যালকুলেটর"
-            )}
+            {text("Bkash Cashout Calculator", "বিকাশ ক্যাশআউট ক্যালকুলেটর")}
           </h1>
         </div>
         <div className="form__body">
@@ -60,11 +57,11 @@ export default function Bkash({ lang, siteLang, money }) {
                   // Currently does not change to BN when typeing out number
                 */}
                 {lang.toMoney(value)}{" "}
-                {lang.switch(
+                {text(
                   "Taka Bkash Cashout Charge is",
                   "টাকা বিকাশ ক্যাশআউট চার্জ"
                 )}{" "}
-                {lang.toMoney(ussd)} {lang.switch("Taka", "টাকা")}
+                {lang.toMoney(ussd)} {text("Taka", "টাকা")}
               </h2>
             </div>
           )}

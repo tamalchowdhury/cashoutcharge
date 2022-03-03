@@ -22,14 +22,21 @@ import { providers } from "../helpers"
 import ReactGA from "react-ga"
 import Bkash from "./Bkash/Bkash"
 import Nagad from "./Nagad/Nagad"
+import Home from "./Home/Home"
+// Redux
+import { useSelector, useDispatch } from "react-redux"
+import { switchLang } from "../features/langSlice"
+
+// Google Analytics
 const trackingId = "UA-44799005-18"
 ReactGA.initialize(trackingId)
 ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
   const [value, setValue] = useState()
-  const [siteLang, setLang] = useState("en")
   const [theme, setTheme] = useState("bkash--theme")
+  const lang = useSelector((state) => state.lang.value)
+  const dispatch = useDispatch()
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
@@ -46,30 +53,30 @@ function App() {
     }
   }, [])
 
-  function switchLang(englishText, banglaText) {
-    if (lang === "en") {
-      return <span className="en--font">{englishText}</span>
+  function text(englishText, banglaText) {
+    if (lang === "bn") {
+      return banglaText
     } else {
-      return <span className="bn--font">{banglaText}</span>
+      return englishText
     }
   }
 
-  const lang = {
+  const templang = {
     switch(englishText, banglaText) {
-      if (siteLang === "bn") {
+      if (lang === "bn") {
         return banglaText
       } else {
         return englishText
       }
     },
     toMoney(amount) {
-      if (siteLang === "bn") {
+      if (lang === "bn") {
         return amount.toLocaleString("bn-IN")
       } else {
         return amount.toLocaleString("en-IN")
       }
     },
-    current: siteLang,
+    current: lang,
   }
 
   const money = {
@@ -89,7 +96,7 @@ function App() {
             </Link>
           </h1>
           {/* language switcher */}
-          <select onChange={(e) => setLang(e.target.value)}>
+          <select onChange={(e) => dispatch(switchLang(e.target.value))}>
             <option value="en" defaultChecked={lang === "en"}>
               English
             </option>
@@ -128,13 +135,8 @@ function App() {
           <div className="">
             <div className={`shell ${theme}`}>
               <Switch>
-                <Route
-                  path="/bkash"
-                  component={() => (
-                    <Bkash siteLang={siteLang} lang={lang} money={money} />
-                  )}
-                />
-                <Route path="/nagad" component={() => <Nagad lang={lang} />} />
+                <Route path="/bkash" component={() => <Bkash text={text} />} />
+                <Route path="/nagad" component={() => <Nagad />} />
                 {providers.map((service) => (
                   <Route
                     exact
@@ -146,7 +148,6 @@ function App() {
                         value={value}
                         setValue={setValue}
                         switchLang={switchLang}
-                        lang={lang}
                       />
                     )}
                   />
@@ -160,20 +161,12 @@ function App() {
                         service={service}
                         value={value}
                         setValue={setValue}
-                        switchLang={switchLang}
-                        lang={lang}
                       />
                     )}
                   />
                 ))}
                 <Route exact path="/">
-                  <Form
-                    service="bkash"
-                    value={value}
-                    setValue={setValue}
-                    switchLang={switchLang}
-                    lang={lang}
-                  />
+                  <Home />
                 </Route>
               </Switch>
             </div>
