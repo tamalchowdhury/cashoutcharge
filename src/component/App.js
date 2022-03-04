@@ -22,6 +22,8 @@ import { providers } from "../helpers"
 import ReactGA from "react-ga"
 import Bkash from "./Bkash/Bkash"
 import Nagad from "./Nagad/Nagad"
+import Rocket from "./Rocket/Rocket"
+import Upay from "./Upay/Upay"
 import Home from "./Home/Home"
 // Redux
 import { useSelector, useDispatch } from "react-redux"
@@ -136,35 +138,13 @@ function App() {
             <div className={`shell ${theme}`}>
               <Switch>
                 <Route path="/bkash" component={() => <Bkash text={text} />} />
-                <Route path="/nagad" component={() => <Nagad />} />
-                {providers.map((service) => (
-                  <Route
-                    exact
-                    key={service}
-                    path={`/${service}/`}
-                    component={() => (
-                      <Form
-                        service={service}
-                        value={value}
-                        setValue={setValue}
-                        switchLang={switchLang}
-                      />
-                    )}
-                  />
-                ))}
-                {providers.map((service) => (
-                  <Route
-                    key={`${service}-slug`}
-                    path={`/${service}/:slug`}
-                    component={() => (
-                      <Form
-                        service={service}
-                        value={value}
-                        setValue={setValue}
-                      />
-                    )}
-                  />
-                ))}
+                <Route path="/nagad" component={() => <Nagad text={text} />} />
+                <Route
+                  path="/rocket"
+                  component={() => <Rocket text={text} />}
+                />
+                <Route path="/upay" component={() => <Upay text={text} />} />
+
                 <Route exact path="/">
                   <Home />
                 </Route>
