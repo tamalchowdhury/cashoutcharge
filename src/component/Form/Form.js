@@ -16,12 +16,15 @@ export default function Form() {
   }
   return (
     <div className="form__body">
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           onChange={handleChange}
           type="text"
           inputMode="numeric"
           value={amount}
+          aria-label="amount"
+          autoComplete="off"
+          autoFocus={true}
         />
       </form>
     </div>

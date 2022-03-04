@@ -61,3 +61,14 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .form {
+    &__title {
+      & h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+      }
+    }
+  }
+}

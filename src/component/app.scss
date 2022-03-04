@@ -102,10 +102,10 @@ ol {
 }
 
 .app {
+  width: 600px;
 }
 
 .shell {
-  width: 600px;
   background: $theme-color;
   border-radius: 0 7px 7px 7px;
   padding: 30px;
@@ -168,4 +168,18 @@ h3 {
   font-size: 0.8rem;
   text-align: center;
   margin: 10px 0;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: 100%;
+  }
+
+  .shell {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }
