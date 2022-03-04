@@ -21,7 +21,8 @@ $upay-theme: #024697;
 $upay-theme-blue: #024697;
 
 $heading-font: "Archivo Narrow", sans-serif;
-$body-font: "Julius Sans One", sans-serif;
+$body-font-custom: "Julius Sans One", sans-serif;
+$body-font: "Arial", sans-serif;
 $bangla-font: Niladri, sans-serif;
 
 *,
@@ -42,12 +43,24 @@ body {
   line-height: 1.3;
   display: grid;
   justify-content: center;
+  color: #333;
+  font-weight: 300;
 }
 
-h1,
+h1 {
+  margin: 0;
+}
+
+p,
+li,
 h2,
 h3 {
-  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+ul,
+ol {
+  margin-inline-start: 20px;
 }
 
 .header {
@@ -114,7 +127,11 @@ h3 {
 }
 
 .bkash--theme {
-  color: $bkash-theme;
+  & h1,
+  h2,
+  h3 {
+    color: $bkash-theme;
+  }
 }
 
 .nagad--theme {

@@ -55,7 +55,7 @@ function App() {
     }
   }, [])
 
-  function text(englishText, banglaText) {
+  function text(englishText, banglaText = englishText) {
     if (lang === "bn") {
       return banglaText
     } else {
@@ -153,21 +153,9 @@ function App() {
             <footer className="footer">
               <p>
                 By{" "}
-                <a
-                  href="https://tamalweb.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Tamal Chowdhury
+                <a href="https://tamalweb.com/" target="_blank" rel="author">
+                  Tamal Web
                 </a>{" "}
-                -{" "}
-                <a
-                  href="https://github.com/tamalweb/cashoutcharge"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Source Code
-                </a>
               </p>
             </footer>
           </div>
