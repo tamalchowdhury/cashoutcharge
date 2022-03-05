@@ -17,7 +17,7 @@ limitations under the License.
 import "./app.scss"
 import Form from "./Form"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { providers } from "../helpers"
 import ReactGA from "react-ga"
 import Bkash from "./Bkash/Bkash"
@@ -36,9 +36,13 @@ ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
   const [value, setValue] = useState()
-  const [theme, setTheme] = useState("bkash--theme")
+  const [theme, setTheme] = useState("nagad--theme")
   const lang = useSelector((state) => state.lang.value)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    localStorage.setItem("cashoutlang", lang)
+  }, [lang])
 
   // Getting the amount from the url path
   useLayoutEffect(() => {
@@ -99,22 +103,15 @@ function App() {
           </h1>
           {/* language switcher */}
           <select onChange={(e) => dispatch(switchLang(e.target.value))}>
-            <option value="en" defaultChecked={lang === "en"}>
+            <option value="en" selected={lang === "en"}>
               English
             </option>
-            <option value="bn" defaultChecked={lang === "bn"}>
+            <option value="bn" selected={lang === "bn"}>
               বাংলা
             </option>
           </select>
         </header>
         <nav className={`menu ${lang === "en" ? "menu--en" : "menu--bn"}`}>
-          <Link
-            to="/bkash"
-            className="menu__item bkash--theme"
-            onClick={() => setTheme("bkash--theme")}
-          >
-            {lang === "en" ? "Bkash" : "বিকাশ"}
-          </Link>
           <Link
             to="/nagad"
             className="menu__item nagad--theme"
@@ -122,16 +119,24 @@ function App() {
           >
             {lang === "en" ? "Nagad" : "নগদ"}
           </Link>
-          <Link to="/rocket" className="menu__item">
-            {lang === "en" ? "Rocket" : "রকেট"}
-          </Link>
           <Link
+            to="/bkash"
+            className="menu__item bkash--theme"
+            onClick={() => setTheme("bkash--theme")}
+          >
+            {lang === "en" ? "Bkash" : "বিকাশ"}
+          </Link>
+
+          {/* <Link to="/rocket" className="menu__item">
+            {lang === "en" ? "Rocket" : "রকেট"}
+          </Link> */}
+          {/* <Link
             to="/upay"
             className="menu__item upay--theme"
             onClick={() => setTheme("upay--theme")}
           >
             {lang === "en" ? "Upay" : "উপায়"}
-          </Link>
+          </Link> */}
         </nav>
         <div className="">
           <div className="">
@@ -144,10 +149,7 @@ function App() {
                   component={() => <Rocket text={text} />}
                 />
                 <Route path="/upay" component={() => <Upay text={text} />} />
-
-                <Route exact path="/">
-                  <Home />
-                </Route>
+                <Route exact path="/" component={() => <Nagad text={text} />} />
               </Switch>
             </div>
             <footer className="footer">

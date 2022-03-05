@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { popularAmounts } from "../../helpers/"
 import "./bkash.scss"
-import { calculateCharge } from "../../helpers"
 import { useSelector, useDispatch } from "react-redux"
 import { setAmount } from "../../features/amountSlice"
 import Form from "../Form/Form"
@@ -36,7 +35,21 @@ export default function Bkash({ text }) {
       <div className="form">
         <div className="form__title">
           <h1>
-            {text("Bkash Cashout Calculator", "বিকাশ ক্যাশআউট ক্যালকুলেটর")}
+            {amount ? (
+              <>
+                {lang === "bn"
+                  ? parseInt(amount).toLocaleString("bn-IN")
+                  : parseInt(amount).toLocaleString("en-IN")}{" "}
+                {text("Bkash fee", "বিকাশ চার্জ")}{" "}
+                {lang === "bn"
+                  ? parseInt(fee).toLocaleString("bn-IN")
+                  : parseInt(fee).toLocaleString("en-IN")}
+              </>
+            ) : (
+              <>
+                {text("Bkash Cashout Calculator", "বিকাশ ক্যাশআউট ক্যালকুলেটর")}
+              </>
+            )}
           </h1>
         </div>
         <div className="form__choice">

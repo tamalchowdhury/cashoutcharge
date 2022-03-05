@@ -11,7 +11,7 @@ $bkash-theme: #d62267;
 $bkash-theme-pink: #d62267;
 $bkash-bg-color: #ffcdd2;
 
-$nagad-bg-color: #ffcc80;
+$nagad-bg-color: #fff2cc;
 $nagad-theme: #f24f41;
 $nagad-theme-red: #f24f41;
 $nagad-theme-orange: #f58220;
@@ -135,7 +135,11 @@ ol {
 }
 
 .nagad--theme {
-  color: $nagad-theme;
+  & h1,
+  h2,
+  h3 {
+    color: $nagad-theme;
+  }
 }
 
 .upay--theme {
@@ -176,7 +180,7 @@ h3 {
   }
 
   .shell {
-    padding: 10px;
+    padding: 20px 10px;
   }
 
   h1 {
