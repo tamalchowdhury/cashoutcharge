@@ -69,15 +69,18 @@ ol {
   align-items: center;
   margin: 20px 0;
 
+  & a {
+    color: #333;
+  }
+
   & h1 {
     margin: 0;
   }
 
   & select {
     border-radius: 3px;
-    font-size: 0.8rem;
     font-family: Arial, sans-serif;
-    height: 1.3rem;
+    // height: 1.3rem;
   }
 }
 
@@ -175,6 +178,18 @@ h3 {
 }
 
 @media (max-width: 600px) {
+  .header {
+    padding: 0 10px;
+
+    & select {
+      padding: 0.4rem;
+    }
+  }
+
+  select {
+    font-size: 1.2rem;
+  }
+
   .app {
     width: 100%;
   }

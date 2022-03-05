@@ -7,10 +7,9 @@ export default function Form() {
   const dispatch = useDispatch()
 
   function handleChange(e) {
-    let value = e.target.value
-    if (value.length < 7) {
-      let num = convertToEnglishNumber(value)
-      // If it's not a number don't update it
+    let num = convertToEnglishNumber(e.target.value)
+    num = num.replace(/[^0-9]/g, "")
+    if (num.length < 7) {
       dispatch(setAmount(num))
     }
   }

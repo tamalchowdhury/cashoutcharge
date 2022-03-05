@@ -32,6 +32,7 @@
       display: inline-block;
       padding: 0.4rem 0.6rem;
       margin-inline-end: 10px;
+      margin-block-end: 10px;
       // border-radius: 2px;
       box-shadow: 3px 3px 0 darkseagreen;
       // font-style: italic;
@@ -68,6 +69,15 @@
       & h1 {
         font-size: 1.5rem;
         line-height: 1.3;
+      }
+    }
+
+    &__suggestion {
+      &__item {
+        &:hover {
+          transform: none;
+          transition: none;
+        }
       }
     }
   }

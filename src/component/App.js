@@ -28,6 +28,7 @@ import Home from "./Home/Home"
 // Redux
 import { useSelector, useDispatch } from "react-redux"
 import { switchLang } from "../features/langSlice"
+import { Redirect } from "react-router-dom"
 
 // Google Analytics
 const trackingId = "UA-44799005-18"
@@ -140,22 +141,24 @@ function App() {
         </nav>
         <div className="">
           <div className="">
-            <div className={`shell ${theme}`}>
-              <Switch>
-                <Route path="/bkash" component={() => <Bkash text={text} />} />
-                <Route path="/nagad" component={() => <Nagad text={text} />} />
-                <Route
-                  path="/rocket"
-                  component={() => <Rocket text={text} />}
-                />
-                <Route path="/upay" component={() => <Upay text={text} />} />
-                <Route exact path="/" component={() => <Nagad text={text} />} />
-              </Switch>
-            </div>
+            <Switch>
+              <Route path="/bkash" component={() => <Bkash text={text} />} />
+              <Route path="/nagad" component={() => <Nagad text={text} />} />
+              <Route path="/rocket" component={() => <Rocket text={text} />} />
+              <Route path="/upay" component={() => <Upay text={text} />} />
+              <Route exact path="/">
+                <Redirect to="/nagad" />
+              </Route>
+            </Switch>
+
             <footer className="footer">
               <p>
                 By{" "}
-                <a href="https://tamalweb.com/" target="_blank" rel="author">
+                <a
+                  href="https://twitter.com/tamalweb"
+                  target="_blank"
+                  rel="author"
+                >
                   Tamal Web
                 </a>{" "}
               </p>
