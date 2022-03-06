@@ -12,3 +12,8 @@ payoneer card ATM fee
 seperate pages 
 nagad
 bkash 
+
+compare tab to compare all services
+
+total cost counter, over a year or others
+
