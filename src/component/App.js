@@ -155,12 +155,13 @@ function App() {
               <p>
                 By{" "}
                 <a
-                  href="https://twitter.com/tamalweb"
+                  href="https://tamalchowdhury.com"
                   target="_blank"
                   rel="author"
                 >
-                  Tamal Web
+                  Tamal Chowdhury
                 </a>{" "}
+                | ☕️ buy me coffee 01616-910810 (Bkash Personal)
               </p>
             </footer>
           </div>
