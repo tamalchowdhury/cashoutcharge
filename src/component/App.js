@@ -24,7 +24,7 @@ import Bkash from "./Bkash/Bkash"
 import Nagad from "./Nagad/Nagad"
 import Rocket from "./Rocket/Rocket"
 import Upay from "./Upay/Upay"
-import Home from "./Home/Home"
+import Home from "./Home/Home.jsx"
 // Redux
 import { useSelector, useDispatch } from "react-redux"
 import { switchLang } from "../features/langSlice"
@@ -114,6 +114,14 @@ function App() {
         </header>
         <nav className={`menu ${lang === "en" ? "menu--en" : "menu--bn"}`}>
           <Link
+            to="/"
+            className="menu__item nagad--theme"
+            onClick={() => setTheme("nagad--theme")}
+          >
+            {lang === "en" ? "Home" : "হোম"}
+          </Link>
+
+          <Link
             to="/nagad"
             className="menu__item nagad--theme"
             onClick={() => setTheme("nagad--theme")}
@@ -128,9 +136,9 @@ function App() {
             {lang === "en" ? "Bkash" : "বিকাশ"}
           </Link>
 
-          {/* <Link to="/rocket" className="menu__item">
+          <Link to="/rocket" className="menu__item rocket--theme">
             {lang === "en" ? "Rocket" : "রকেট"}
-          </Link> */}
+          </Link>
           {/* <Link
             to="/upay"
             className="menu__item upay--theme"
@@ -146,9 +154,7 @@ function App() {
               <Route path="/nagad" component={() => <Nagad text={text} />} />
               <Route path="/rocket" component={() => <Rocket text={text} />} />
               <Route path="/upay" component={() => <Upay text={text} />} />
-              <Route exact path="/">
-                <Redirect to="/nagad" />
-              </Route>
+              <Rocket exact path="/" component={() => <Home text={text} />} />
             </Switch>
 
             <footer className="footer">
