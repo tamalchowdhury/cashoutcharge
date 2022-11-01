@@ -14,8 +14,8 @@ export default function Rocket({ text }) {
   let fee = calculateCharge(amount)
 
   const rates = {
-    app: 1.8,
-    ussd: 1.8,
+    app: 1.67,
+    ussd: 1.67,
   }
 
   // Function to replace bangla numbers to enlish counter parts
@@ -34,13 +34,15 @@ export default function Rocket({ text }) {
     <>
       <HelmetProvider>
         <Helmet>
-          <title>Rocket Cashout Calculator - রকেট ক্যাশআউট ক্যালকুলেটর</title>
+          <title>
+            DBBL Rocket Cashout Calculator - রকেট ক্যাশআউট ক্যালকুলেটর
+          </title>
           <meta
             name="description"
-            content="Use this free Rocket cashout calculator to check the charge"
+            content="Use this free DBBL Rocket cashout calculator to check the charge"
           />
         </Helmet>
-        <div className="shell Rocket--theme">
+        <div className="shell rocket--theme">
           <div className="form">
             <div className="form__title">
               <h1>

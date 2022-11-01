@@ -1,11 +1,28 @@
-export default function Home() {
+import { Link } from "react-router-dom"
+
+export default function Home({ text }) {
   return (
     <>
-      <h1>Bkash</h1>
-      <p>
-        Welcome to Cashout Charge Website. It helps you calculate charges of
-        Bkash, Nagad, Rocket, and Upay. Others are coming soon!
-      </p>
+      <div className="shell">
+        <div className="form">
+          <p>
+            Cashout Charge for Bkash, Nagad, Rocket mobile financial services in
+            Bangladesh
+          </p>
+          <h1>
+            <Link to="/bkash">Bkash</Link>
+          </h1>
+          <h1>
+            <Link to="/nagad">Nagad</Link>
+          </h1>
+          <h1>
+            <Link to="/rocket">Rocket</Link>
+          </h1>
+          {/* <h1>
+            <Link to="/upay">Upay</Link>
+          </h1> */}
+        </div>
+      </div>
     </>
   )
 }

@@ -115,10 +115,18 @@ function App() {
         <nav className={`menu ${lang === "en" ? "menu--en" : "menu--bn"}`}>
           <Link
             to="/"
-            className="menu__item nagad--theme"
-            onClick={() => setTheme("nagad--theme")}
+            className="menu__item home--theme"
+            onClick={() => setTheme("home--theme")}
           >
             {lang === "en" ? "Home" : "হোম"}
+          </Link>
+
+          <Link
+            to="/bkash"
+            className="menu__item bkash--theme"
+            onClick={() => setTheme("bkash--theme")}
+          >
+            {lang === "en" ? "Bkash" : "বিকাশ"}
           </Link>
 
           <Link
@@ -127,13 +135,6 @@ function App() {
             onClick={() => setTheme("nagad--theme")}
           >
             {lang === "en" ? "Nagad" : "নগদ"}
-          </Link>
-          <Link
-            to="/bkash"
-            className="menu__item bkash--theme"
-            onClick={() => setTheme("bkash--theme")}
-          >
-            {lang === "en" ? "Bkash" : "বিকাশ"}
           </Link>
 
           <Link to="/rocket" className="menu__item rocket--theme">
@@ -154,7 +155,7 @@ function App() {
               <Route path="/nagad" component={() => <Nagad text={text} />} />
               <Route path="/rocket" component={() => <Rocket text={text} />} />
               <Route path="/upay" component={() => <Upay text={text} />} />
-              <Rocket exact path="/" component={() => <Home text={text} />} />
+              <Route exact path="/" component={() => <Home text={text} />} />
             </Switch>
 
             <footer className="footer">

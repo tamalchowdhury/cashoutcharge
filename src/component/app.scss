@@ -20,6 +20,10 @@ $upay-bg-color: #ffd602;
 $upay-theme: #024697;
 $upay-theme-blue: #024697;
 
+$rocket-bg-color: #dbbedd;
+$rocket-theme: #89288f;
+$rocket-theme-blue: #024697;
+
 $heading-font: "Archivo Narrow", sans-serif;
 $body-font-custom: "Julius Sans One", sans-serif;
 $body-font: "Arial", sans-serif;
@@ -128,6 +132,9 @@ ol {
 .shell.upay--theme {
   background-color: $upay-bg-color;
 }
+.shell.rocket--theme {
+  background-color: $rocket-bg-color;
+}
 
 .bkash--theme {
   & h1,
@@ -144,9 +151,23 @@ ol {
     color: $nagad-theme;
   }
 }
-
+.rocket--theme {
+  & h1,
+  h2,
+  h3 {
+    color: $rocket-theme;
+  }
+}
 .upay--theme {
-  color: $upay-theme;
+  & h1,
+  h2,
+  h3 {
+    color: $upay-theme;
+  }
+}
+
+.menu__item.home--theme {
+  background: $theme-color;
 }
 
 .menu__item.bkash--theme {
@@ -154,6 +175,10 @@ ol {
 }
 .menu__item.nagad--theme {
   color: $nagad-theme-red;
+}
+.menu__item.rocket--theme {
+  background: $rocket-bg-color;
+  color: $rocket-theme;
 }
 .menu__item.upay--theme {
   background: $upay-bg-color;
