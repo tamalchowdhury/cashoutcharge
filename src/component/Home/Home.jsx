@@ -18,9 +18,9 @@ export default function Home({ text }) {
           <h1>
             <Link to="/rocket">Rocket</Link>
           </h1>
-          {/* <h1>
+          <h1>
             <Link to="/upay">Upay</Link>
-          </h1> */}
+          </h1>
         </div>
       </div>
     </>

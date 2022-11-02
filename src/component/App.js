@@ -23,7 +23,7 @@ import ReactGA from "react-ga"
 import Bkash from "./Bkash/Bkash"
 import Nagad from "./Nagad/Nagad"
 import Rocket from "./Rocket/Rocket"
-import Upay from "./Upay/Upay"
+import Upay from "./Upay/Upay.jsx"
 import Home from "./Home/Home.jsx"
 // Redux
 import { useSelector, useDispatch } from "react-redux"
@@ -140,13 +140,13 @@ function App() {
           <Link to="/rocket" className="menu__item rocket--theme">
             {lang === "en" ? "Rocket" : "রকেট"}
           </Link>
-          {/* <Link
+          <Link
             to="/upay"
             className="menu__item upay--theme"
             onClick={() => setTheme("upay--theme")}
           >
             {lang === "en" ? "Upay" : "উপায়"}
-          </Link> */}
+          </Link>
         </nav>
         <div className="">
           <div className="">
