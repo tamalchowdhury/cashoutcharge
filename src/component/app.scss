@@ -67,6 +67,10 @@ ol {
   margin-inline-start: 20px;
 }
 
+img {
+  max-width: 100%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -116,6 +120,22 @@ ol {
   background: $theme-color;
   border-radius: 0 7px 7px 7px;
   padding: 30px;
+}
+
+.home__icons {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  text-align: center;
+  
+}
+
+.home__icons a {
+  text-decoration: none;
+  color: #333;
+}
+
+.home__icons img {
+  border-radius: 25%;
 }
 
 .app.bkash--theme {
