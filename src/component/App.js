@@ -167,6 +167,12 @@ function App() {
                   rel="author"
                 >
                   Tamal Chowdhury
+                </a>{" "}|{" "}
+                <a
+                  href="https://www.facebook.com/tamalchow"
+                  target="_blank"
+                >
+                  Facebook Profile
                 </a>{" "}
                 | ☕️ buy me coffee 01616-910810 (Bkash Personal)
               </p>
