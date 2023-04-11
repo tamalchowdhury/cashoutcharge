@@ -169,12 +169,12 @@ function App() {
                   Tamal Chowdhury
                 </a>{" "}|{" "}
                 <a
-                  href="https://www.facebook.com/tamalchow"
+                  href="https://www.facebook.com/tamalchowdhury.profile"
                   target="_blank"
                 >
                   Facebook Profile
                 </a>{" "}
-                | ☕️ buy me coffee 01616-910810 (Bkash Personal)
+                | 🌙 Send eid salami 01616-910810 (Bkash Personal)
               </p>
             </footer>
           </div>
