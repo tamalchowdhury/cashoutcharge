@@ -160,6 +160,21 @@ function App() {
 
             <footer className="footer">
               <p>
+                Disclaimer: This site is not affiliated with bKash, Rocket,
+                Nagad, or Upay and related banks. All the names, and logos of
+                the companies are used for information purpose only. The cashout
+                fee of services may change from time to time and may not be
+                updated in this project, so please check out the app and
+                official websites for an updated rate. This project is licensed
+                under the{" "}
+                <a
+                  href="https://github.com/tamalchowdhury/cashoutcharge/blob/main/LICENSE"
+                  target="_blank"
+                >
+                  Apache 2 license.
+                </a>
+              </p>
+              <p>
                 By{" "}
                 <a
                   href="https://tamalchowdhury.com"
