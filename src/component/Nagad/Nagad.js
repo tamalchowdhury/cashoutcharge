@@ -15,8 +15,8 @@ export default function Nagad({ text }) {
   let fee = calculateCharge(amount)
 
   const rates = {
-    app: 1.149,
-    ussd: 1.494,
+    app: 1.25,
+    ussd: 1.5,
   }
 
   // Function to replace bangla numbers to enlish counter parts
