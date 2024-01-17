@@ -15,7 +15,7 @@ export default function Bkash({ text }) {
   let fee = calculateCharge(amount)
 
   const rates = {
-    app: 1.75,
+    app: 1.85,
     ussd: 1.85,
   }
 

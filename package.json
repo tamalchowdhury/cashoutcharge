@@ -55,5 +55,8 @@
     "babel-register": "^6.26.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "engines": {
+    "node": "16.20.2"
   }
 }

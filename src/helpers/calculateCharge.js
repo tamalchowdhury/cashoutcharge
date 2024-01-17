@@ -14,7 +14,7 @@ export function calculateCharge(service, amount) {
 }
 
 function calcBkash(amount) {
-  let app = Math.ceil((amount * 1.75) / 100);
+  let app = Math.ceil((amount * 1.85) / 100);
   let ussd = Math.ceil((amount * 1.85) / 100);
   return [app, ussd];
 }
