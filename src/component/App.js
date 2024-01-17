@@ -167,14 +167,14 @@ function App() {
                   rel="author"
                 >
                   Tamal Chowdhury
-                </a>{" "}|{" "}
+                </a>{" "}
+                |{" "}
                 <a
                   href="https://www.facebook.com/tamalchowdhury.profile"
                   target="_blank"
                 >
                   Facebook Profile
-                </a>{" "}
-                | 🌙 Send eid salami 01616-910810 (Bkash Personal)
+                </a>
               </p>
             </footer>
           </div>
