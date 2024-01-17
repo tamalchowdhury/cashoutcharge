@@ -166,7 +166,7 @@ function App() {
                   target="_blank"
                   rel="author"
                 >
-                  Tamal Chowdhury
+                  Tamal Anwar Chowdhury
                 </a>{" "}
                 |{" "}
                 <a
